@@ -27,13 +27,6 @@ snpMart = useEnsembl(biomart = "snps",
                      dataset = "hsapiens_snp",
                      version = 'GRCh37')
 
-setwd('/Volumes/Benitez Lab/Meiyu/gwas_4785')
-
-# files <- list.files(path = "rank8C/", pattern = "\\.linear$")
-# proteins <- sub('.assoc.linear', '', files)
-# files <- "ENTPD6.assoc.linear"
-# proteins <- "ENTPD6"
-
 manhattan.plot <- function(input.path, plots.output.path, table.output){
   files <- list.files(path = input.path, pattern = "\\.linear$")
   proteins <- sub('.assoc.linear', '', files)
@@ -135,20 +128,3 @@ manhattan.plot <- function(input.path, plots.output.path, table.output){
 manhattan.plot(input.path, plots.output.path, table.output)
 
 
-
-
-## manhattan and QQ plots
-# for (i in 1:9){
-#   ptm <- proc.time()
-#   assc_results <- read.table(paste0("wgs_8_lrrk2_status/", proteins[i], "_lrrk2.assoc.linear"), head=TRUE)
-#   
-#   tiff(paste0("wgs_8_lrrk2_status/", proteins[i], "_lrrk2.tiff"), res = 300, height = 2000, width = 2500)
-#   manhattan(assc_results, chr="CHR", bp="BP", p="P", snp="SNP", main = proteins[i],
-#             col = c("blue4", "orange3"), ylim = c(0, max(10, max(-log10(assc_results$P)), na.rm = T)), annotatePval = 0.01)
-#   dev.off()  
-#   
-#   # jpeg(paste0("wgs_8_results/QQplot_", i, ".jpeg"))
-#   # qq(assc_results$P, main = "Q-Q plot of GWAS p-values : log")
-#   # dev.off()
-#   print(proc.time() - ptm)
-# }
